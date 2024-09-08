@@ -1,0 +1,25 @@
+services:
+  app:
+    image: 'assignment:0.0.1-SNAPSHOT'
+    build:
+      context: .
+    container_name: app
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/app
+      - SPRING_DATASOURCE_USERNAME=admin
+      - SPRING_DATASOURCE_PASSWORD=letmein
+
+    ports:
+      - "8080:8080"
+
+  db:
+    image: postgres
+    container_name: db
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=letmein
+      - POSTGRES_DB=app
+    ports:
+      - "5432:5432"
