@@ -2,7 +2,7 @@ package com.sky.assignment.controller;
 
 import com.sky.assignment.model.Project;
 import com.sky.assignment.model.User;
-import com.sky.assignment.service.UserServiceImpl;
+import com.sky.assignment.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,7 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserServiceImpl userService;
+    private UserService userService;
 
     @GetMapping("/{userId}")
     public User getUser(@PathVariable("userId") Integer userId) {

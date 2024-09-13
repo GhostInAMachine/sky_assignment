@@ -1,4 +1,4 @@
-package com.sky.assignment.service;
+package com.sky.assignment.service.impl;
 
 import com.sky.assignment.model.AdminAccount;
 import com.sky.assignment.repository.AdminAccountRepository;
