@@ -41,8 +41,8 @@ class UserApiTest {
 
     private User createUser() throws Exception {
         User user = new User();
-        String name = "My project";
-        user.setName(name);
+        user.setName("me");
+        user.setEmail("me@gmail.com");
         user.setPassword("letmein");
 
         MockHttpServletRequestBuilder request = post("/user")
@@ -79,6 +79,23 @@ class UserApiTest {
         User retrievedUser = objectMapper.readValue(contentAsString, User.class);
         Assertions.assertEquals(user, retrievedUser);
     }
+
+    @Test
+    void testUserNotValid() throws Exception {
+        User user = new User();
+        user.setName("me");
+        user.setEmail("email");
+        user.setPassword("letmein");
+
+        MockHttpServletRequestBuilder request = post("/user")
+                .with(httpBasic("admin", "password"))
+                .content(toJson(user))
+                .contentType(MediaType.APPLICATION_JSON);
+
+        mockMvc.perform(request)
+                .andExpect(status().isBadRequest());
+    }
+
 
     @Test
     void testUpdateUser() throws Exception {

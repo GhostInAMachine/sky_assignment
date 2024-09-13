@@ -2,6 +2,7 @@ package com.sky.assignment.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Project {
@@ -10,6 +11,7 @@ public class Project {
     @GeneratedValue
     private Integer id;
 
+    @NotNull
     private String name;
 
     @ManyToOne

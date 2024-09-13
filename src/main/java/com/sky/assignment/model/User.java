@@ -3,6 +3,8 @@ package com.sky.assignment.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sky.assignment.repository.AttributeEncryptor;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +19,13 @@ public class User {
     private Integer id;
 
     private String name;
+
+    @Email
+    @NotNull
     private String email;
 
     @Convert(converter = AttributeEncryptor.class)
+    @NotNull
     private String password;
 
     @OneToMany(targetEntity = Project.class, mappedBy = "user", cascade = CascadeType.ALL)
